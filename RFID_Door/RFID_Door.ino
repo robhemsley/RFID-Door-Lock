@@ -1,13 +1,12 @@
 /*
-Access Controller - MIT RFID Door Lock Project
+Access Controller - MIT RFID Door Lock
 
-Provides remote admin of users via serial interface. Enter h char in Serial Monitor
-to view all available cmds. New users can also be added/removed by doing the following:
+Sketch provides remote admin of users via serial interface. Type h in Serial Monitor
+to view all available cmds. New users can also be added/removed by completing the following steps:
 
 1) Take existing users card and hold against reader for more than 7 seconds
-2) Now bring the new users card to the reader so that both admin and new user are present
-3) If an account already existed they shall be removed from the list if not a new account
-   is created.
+2) Bring the new user card to the reader so that both cards are present
+3) If an account already existed they shall be removed from the acess list otherwise a new entry is created.
 
 Created: July 3, 2012 by Rob Hemsley (http://www.robhemsley.co.uk)
 */
@@ -17,13 +16,13 @@ Created: July 3, 2012 by Rob Hemsley (http://www.robhemsley.co.uk)
 #include <SoftwareSerial.h>
 #include <Servo.h> 
 
-//USER EDIT START
-const int STATIC_ID_LOAD[] = {};          //List of Card IDs to automatically be loaded to memory (Supports previous approach)
+//START USER EDIT
+const int STATIC_ID_LOAD[] = {};          //List of Card IDs to automatically be loaded to memory (Supports previous version)
 const int SERVO_PIN = 14;                 //Pin number Servo Logic is attached to
 const int SOFT_RX = 7;                    //RFID SoftwareSerial RX pin
 const int SOFT_TX = 8;                    //RFID SoftwareSerial TX pin
 const int ADMIN_TIMEOUT = 7000;           //Number of milli seconds an admin card must be present before entering admin mode
-//USER EDIT END
+//END USER EDIT
 
 int app_state = 0;
 int lock_state = 0;
@@ -61,11 +60,6 @@ void setup(){
   halt();
   
   lock_state = EEPROM.read(0);
-  if(lock_state == 0){
-    change_lock(0);
-  }else{
-    change_lock(1);
-  }
   
   //Add static IDs if needed
   for(int i=0; i<sizeof(STATIC_ID_LOAD)/sizeof(int); i++){
@@ -88,6 +82,8 @@ void setup(){
     Serial.println(NO_USERS);
     app_state = 1;
   }
+  
+  change_lock(1);
 }
 
 void loop(){
@@ -259,17 +255,17 @@ void process(){
             current_ids_time[k] = millis(); 
             
             if(check_id(current_ids[i])){
-              /*change_lock(!lock_state);
+              change_lock(!lock_state);
               if(lock_state == 0){
                 Serial.println(LOCK_STATE_UNLOCK);
               }else{
                 Serial.println(LOCK_STATE_LOCKED);
-              }*/
-              change_lock(0);
+              }
+              /*change_lock(0);
               Serial.println(LOCK_STATE_UNLOCK);
               delay(2000);
               change_lock(1);
-              Serial.println(LOCK_STATE_LOCKED);
+              Serial.println(LOCK_STATE_LOCKED);*/
             }       
             if(app_state == 1){
               app_state = 2;
