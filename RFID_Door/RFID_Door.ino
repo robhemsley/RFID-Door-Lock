@@ -10,6 +10,8 @@ to view all available cmds. New users can also be added/removed by completing th
 
 Created: July 3, 2012 by Rob Hemsley (http://www.robhemsley.co.uk)
 
+Build up on the MIT Media Lab door opener by Valentin Heun (http://colorsaregood.com/door)
+
 Build up on Aaron Weiss "RFID Eval 13.56MHz Shield example sketch v10" 
 */
 
