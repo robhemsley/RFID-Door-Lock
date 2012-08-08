@@ -2,7 +2,7 @@ RFID-Door-Lock
 ==============
 
 Arduino sketch to provide user access control for DIY RFID locks. Code allows users to be easily added and removed via a serial interface which allows changes to be saved back to EEPROM.  
-The code has been written for use with the MIT Media Lab door lock created by Valentin Heun (http://colorsaregood.com/door/)  
+The code can be used with the MIT Media Lab door lock created by Valentin Heun (http://colorsaregood.com/door/)  
 
 ## Installation ##
 
