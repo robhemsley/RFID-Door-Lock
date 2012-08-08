@@ -9,6 +9,8 @@ to view all available cmds. New users can also be added/removed by completing th
 3) If an account already existed they shall be removed from the acess list otherwise a new entry is created.
 
 Created: July 3, 2012 by Rob Hemsley (http://www.robhemsley.co.uk)
+
+Build up on Aaron Weiss "RFID Eval 13.56MHz Shield example sketch v10" 
 */
 
 //Library Imports
@@ -255,17 +257,17 @@ void process(){
             current_ids_time[k] = millis(); 
             
             if(check_id(current_ids[i])){
-              change_lock(!lock_state);
+              /*change_lock(!lock_state);
               if(lock_state == 0){
                 Serial.println(LOCK_STATE_UNLOCK);
               }else{
                 Serial.println(LOCK_STATE_LOCKED);
-              }
-              /*change_lock(0);
+              }*/
+              change_lock(0);
               Serial.println(LOCK_STATE_UNLOCK);
               delay(2000);
               change_lock(1);
-              Serial.println(LOCK_STATE_LOCKED);*/
+              Serial.println(LOCK_STATE_LOCKED);
             }       
             if(app_state == 1){
               app_state = 2;
